@@ -3,8 +3,10 @@ package controllers;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import view_model.QLKhachHang;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet({
     "/khach-hang/index",    // GET
@@ -15,6 +17,8 @@ import java.io.IOException;
     "/khach-hang/update",   // POST
 })
 public class KhachHangServlet extends HttpServlet {
+    private ArrayList<QLKhachHang> list = new ArrayList<>();
+
     @Override
     protected void doGet(
         HttpServletRequest request,
@@ -44,6 +48,17 @@ public class KhachHangServlet extends HttpServlet {
         HttpServletResponse response
     ) throws ServletException, IOException {
         String ma = request.getParameter("ma");
-        System.out.println(ma);
+        String ho = request.getParameter("ho");
+        String ten_dem = request.getParameter("ten_dem");
+        String ten = request.getParameter("ten");
+        String sdt = request.getParameter("sdt");
+        String mat_khau = request.getParameter("mat_khau");
+        String dia_chi = request.getParameter("dia_chi");
+        String thanh_pho = request.getParameter("thanh_pho");
+        String quoc_gia = request.getParameter("quoc_gia");
+        String ngay_sinh = request.getParameter("ngay_sinh");
+
+        QLKhachHang vm = new QLKhachHang(ma, ho, ten_dem, ten, ngay_sinh, sdt, dia_chi, mat_khau, quoc_gia, thanh_pho);
+        list.add(vm);
     }
 }
