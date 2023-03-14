@@ -24,7 +24,27 @@ public class KhachHangServlet extends HttpServlet {
         HttpServletRequest request,
         HttpServletResponse response
     ) throws ServletException, IOException {
-        this.create(request, response);
+        String uri = request.getRequestURI();
+        if (uri.contains("create")) {
+            this.create(request, response);
+        } else if (uri.contains("edit")) {
+//            this.edit(request, response);
+        } else if (uri.contains("delete")) {
+//            this.delete(request, response);
+        } else {
+            this.index(request, response);
+        }
+    }
+
+    protected void index(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws ServletException, IOException {
+        this.list.add(new QLKhachHang("PH1", "Ng", "Van", "AA", "12/12/2021", "0123123123", "HN", "123", "VN", "HN"));
+        this.list.add(new QLKhachHang("PH2", "Tran", "Van", "BB", "12/12/2021", "0123123123", "HN", "123", "VN", "HN"));
+        request.setAttribute("danhSachKH", this.list);
+        request.getRequestDispatcher("/views/khach_hang/index.jsp")
+            .forward(request, response);
     }
 
     protected void create(
