@@ -3,6 +3,7 @@ package controllers;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.apache.commons.beanutils.BeanUtils;
 import repositories.KhachHangRepository;
 import view_model.QLKhachHang;
 
@@ -87,7 +88,14 @@ public class KhachHangServlet extends HttpServlet {
         HttpServletRequest request,
         HttpServletResponse response
     ) throws ServletException, IOException {
-        this.store(request, response);
+        String uri = request.getRequestURI();
+        if (uri.contains("store")) {
+            this.store(request, response);
+        } else if (uri.contains("update")) {
+            this.update(request, response);
+        } else {
+            response.sendRedirect("/SP23B2_SOF3011_IT17311_war_exploded/khach-hang/index");
+        }
     }
 
     protected void store(
@@ -109,5 +117,19 @@ public class KhachHangServlet extends HttpServlet {
         this.khRepo.insert(vm);
         response.sendRedirect("/SP23B2_SOF3011_IT17311_war_exploded/khach-hang/index");
 
+    }
+
+    protected void update(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws ServletException, IOException {
+        try {
+            QLKhachHang vm = new QLKhachHang();
+            BeanUtils.populate(vm, request.getParameterMap());
+            this.khRepo.update(vm);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        response.sendRedirect("/SP23B2_SOF3011_IT17311_war_exploded/khach-hang/index");
     }
 }
