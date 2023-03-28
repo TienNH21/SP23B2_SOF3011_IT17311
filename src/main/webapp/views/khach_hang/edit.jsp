@@ -29,7 +29,7 @@
             <div class="row mt-3">
                 <div class="col-6">
                     <label>Tên đệm</label>
-                    <input type="text" name="ten_dem" class="form-control" value="${ kh.ten_dem }" />
+                    <input type="text" name="tenDem" class="form-control" value="${ kh.tenDem }" />
                 </div>
                 <div class="col-6">
                     <label>Tên</label>
@@ -39,34 +39,34 @@
             <div class="row mt-3">
                 <div class="col-6">
                     <label>Ngày sinh</label>
-                    <input type="date" name="ngay_sinh" class="form-control" />
+                    <input type="date" name="ngaySinh" class="form-control" value="${ kh.ngaySinh }" />
                 </div>
                 <div class="col-6">
                     <label>SDT</label>
-                    <input type="tel" name="sdt" class="form-control" />
+                    <input type="tel" name="sdt" class="form-control" value="${ kh.sdt }" />
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-6">
                     <label>Địa chỉ</label>
-                    <input type="text" name="dia_chi" class="form-control" />
+                    <input type="text" name="diaChi" class="form-control" value="${ kh.diaChi }" />
                 </div>
                 <div class="col-6">
                     <label>Mật khẩu</label>
-                    <input type="password" name="mat_khau" class="form-control" />
+                    <input type="password" name="matKhau" class="form-control" value="${ kh.matKhau }" />
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-6">
                     <label>Quốc gia</label>
-                    <select name="quoc_gia" class="form-select">
-                        <option value="vi" ${ kh.quoc_gia == "vi" ? "selected" : "" }>Việt Nam</option>
-                        <option value="us" ${ kh.quoc_gia == "us" ? "selected" : "" }>Mỹ</option>
+                    <select name="quocGia" class="form-select">
+                        <option value="vi" ${ kh.quocGia == "vi" ? "selected" : "" }>Việt Nam</option>
+                        <option value="us" ${ kh.quocGia == "us" ? "selected" : "" }>Mỹ</option>
                     </select>
                 </div>
                 <div class="col-6">
                     <label>Thành phố</label>
-                    <select name="thanh_pho" class="form-select">
+                    <select name="thanhPho" class="form-select">
                         <option value="ha_noi">Hà Nội</option>
                         <option value="new_york">New York</option>
                     </select>
@@ -74,7 +74,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-6">
-                    <button class="btn btn-primary">Thêm mới</button>
+                    <button class="btn btn-primary">Cập nhật</button>
                 </div>
                 <div class="col-6"></div>
             </div>

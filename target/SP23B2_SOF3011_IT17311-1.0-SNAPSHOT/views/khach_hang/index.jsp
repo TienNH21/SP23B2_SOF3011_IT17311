@@ -12,7 +12,7 @@
 <div class="col-10 offset-1 mt-5 table-responsive">
     <div class="row">
         <div class="col-6">
-            <a href="#" class="btn btn-success">Thêm mới</a>
+            <a href="/SP23B2_SOF3011_IT17311_war_exploded/khach-hang/create" class="btn btn-success">Thêm mới</a>
         </div>
     </div>
     <c:if test="${ f:length(danhSachKH) == 0 }">
@@ -40,11 +40,11 @@
             <tr>
                 <td>${ kh.ma }</td>
                 <td>${ kh.ho }</td>
-                <td>${ kh.ten_dem }</td>
+                <td>${ kh.tenDem }</td>
                 <td>${ kh.ten }</td>
-                <td>${ kh.ngay_sinh }</td>
+                <td>${ kh.ngaySinh }</td>
                 <td>${ kh.sdt }</td>
-                <td>${ kh.dia_chi }</td>
+                <td>${ kh.diaChi }</td>
                 <td>HN</td>
                 <td>VN</td>
                 <td>
