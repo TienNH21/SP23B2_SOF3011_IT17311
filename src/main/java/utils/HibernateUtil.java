@@ -1,12 +1,17 @@
 package utils;
 
+import domain_model.ChucVu;
 import domain_model.KhachHang;
+import domain_model.NhanVien;
+import jakarta.persistence.TypedQuery;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import java.util.List;
 import java.util.Properties;
 
 public class HibernateUtil {
@@ -25,6 +30,8 @@ public class HibernateUtil {
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(KhachHang.class);
+        conf.addAnnotatedClass(ChucVu.class);
+        conf.addAnnotatedClass(NhanVien.class);
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);
@@ -36,6 +43,15 @@ public class HibernateUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(getFACTORY());
+        Session hSession = getFACTORY().openSession();
+        String hql = "SELECT cvObj FROM ChucVu cvObj WHERE cvObj.ma = ?1";
+        TypedQuery<ChucVu> q = hSession.createQuery(hql, ChucVu.class);
+        q.setParameter(1, "1");
+        ChucVu cv = q.getSingleResult();
+        System.out.println(cv.getTen());
+
+        List<NhanVien> listNv = cv.getListNv();
+        NhanVien nv = listNv.get(0);
+        System.out.println(nv.getHo() + " " + nv.getTenDem() + " " + nv.getTen());
     }
 }
